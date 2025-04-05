@@ -1,4 +1,4 @@
-import controller,model,view,pygame
+import view,model,pygame,controller
 
 
 
