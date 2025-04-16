@@ -5,6 +5,7 @@ import model
 
 def controller():
     events=pygame.event.get()
+    model.button_coins_add.controller(events)
     for event in events:
         if event.type==pygame.QUIT:
             exit()
