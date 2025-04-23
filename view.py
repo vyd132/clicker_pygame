@@ -24,6 +24,8 @@ def view():
     model.coins_add.blit()
     model.button_coins_add.blit()
     model.lvl_player.blit()
+    model.cost_for_upgrade_player.blit()
+    model.coins_per_click_add.blit()
 
 
     pygame.display.set_caption(str(int(model.clock.get_fps())))
