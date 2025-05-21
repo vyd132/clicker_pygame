@@ -8,7 +8,7 @@ import model
 
 
 
-city=image.Image(1.5,"sprites/place/place1.jpg",screen,0,0)
+
 worker1=image.Image(1/3,"sprites/worker/worker1.png",screen,0,550)
 coin=image.Image(1/2,'sprites/controls/coin.png',screen,850,60)
 plus=image.Image(1/5,"sprites/controls/plus.png",screen,850,110)
@@ -16,9 +16,10 @@ plus=image.Image(1/5,"sprites/controls/plus.png",screen,850,110)
 
 def view():
     screen.fill([0,0,0])
-    city.blit()
+    model.current_city.blit()
     worker1.blit()
     coin.blit()
+    plus.blit()
     model.coins.blit()
     model.coins_add.blit()
     model.button_coins_add.blit()
@@ -28,6 +29,7 @@ def view():
     model.coins_at_second.blit()
     model.worker2.blit()
     model.worker3.blit()
+    model.worker4.blit()
 
 
     pygame.display.set_caption(str(int(model.clock.get_fps())))
