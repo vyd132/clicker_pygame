@@ -14,6 +14,8 @@ coins_at_second=text.Text([255, 0, 0], 40, pygame.display.get_surface(),900,160
 
 current_city=image.Image(1.5,"sprites/place/place1.jpg",pygame.display.get_surface(),0,0)
 
+clear_all=False
+
 def coins_add_click():
     if buy(1.05,cost_for_upgrade_player)==False:
         return
@@ -21,11 +23,14 @@ def coins_add_click():
     lvl_player.number_for_text+=1
     coins_per_click_add.number_for_text+=2
 
-def background_change2():
+def background_change():
     global current_city
     current_city=image.Image(2,"sprites/place/place2.png",pygame.display.get_surface(),0,0)
 
-
+def background_change2():
+    global current_city,clear_all
+    current_city=image.Image(1.2,"sprites/place/place3.jpg",pygame.display.get_surface(),0,0)
+    clear_all=True
 
 def money_get():
     coins.number_for_text+=coins_add.number_for_text
@@ -39,10 +44,13 @@ def buy(cost_increase,upgrade_cost):
         return False
 
 
-worker4=business.Business("sprites/business/business1_inv.png","sprites/business/business1_1.png","sprites/business/business1_2.png","sprites/business/business1_3.png",800,300,1,5000000,buy,False,10,coins_at_second,None)
+worker5=business.Business("sprites/business/business2_inv.png","sprites/business/business2_1.png","sprites/business/business2_2.png","sprites/business/business2_3.png",1000,500,1,10000000,buy,False,50,coins_at_second,on_lvl_10=background_change2,background_level=30)
+workers_list.append(worker5)
+
+worker4=business.Business("sprites/business/business1_inv.png","sprites/business/business1_1.png","sprites/business/business1_2.png","sprites/business/business1_3.png",800,300,1,5000000,buy,False,10,coins_at_second,worker5)
 workers_list.append(worker4)
 
-worker3=workers.Workers("sprites/worker/worker3_inv.png","sprites/worker/worker3.png",600,500,1/3,1000000,buy,False,5,coins_at_second,worker4,background_change2)
+worker3=workers.Workers("sprites/worker/worker3_inv.png","sprites/worker/worker3.png",600,500,1/3,1000000,buy,False,5,coins_at_second,worker4,background_change)
 workers_list.append(worker3)
 
 worker2=workers.Workers("sprites/worker/worker2_inv.png","sprites/worker/worker2.png",300,470,1/4,10000,buy,True,1,coins_at_second,worker3)

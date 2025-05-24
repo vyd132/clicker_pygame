@@ -1,7 +1,7 @@
 import pygame,image,text,button
 
 class Workers():
-    def __init__(self, img_inv, img_normal, x, y,size, cost,buy,visible,increase,income,next_worker=None,on_lvl_10=None):
+    def __init__(self, img_inv, img_normal, x, y,size, cost,buy,visible,increase,income,next_worker=None,on_lvl_10=None,background_level=10):
         self.img_inv = image.Image(size, img_inv, pygame.display.get_surface(), x, y)
         self.img_normal = image.Image(size, img_normal, pygame.display.get_surface(), x, y)
         self.lvl_worker = text.Text([255, 255, 255], 40, pygame.display.get_surface(), x, y - 60, 'Уровень ', 0, '',
@@ -21,6 +21,7 @@ class Workers():
                                      x + self.img_normal.image.get_width() / 1.3,
                                      y + self.img_normal.image.get_height() / 2+50, '+', self.increase,'','#750E13')
         self.on_lvl_10=on_lvl_10
+        self.background_level=background_level
 
     def workers_upgrade(self):
         if self.buy(1.05, self.cost_for_upgrade) == False:
@@ -29,10 +30,11 @@ class Workers():
         self.lvl_worker.number_for_text += 1
         self.income.number_for_text += self.income_text.number_for_text
         self.income_text.number_for_text += self.increase
-        if self.lvl_worker.number_for_text ==10 and self.on_lvl_10 != None:
-            self.on_lvl_10()
         if self.lvl_worker.number_for_text ==10 and  self.next_worker!=None:
             self.next_worker.visible=True
+        if self.lvl_worker.number_for_text ==self.background_level and self.on_lvl_10 != None:
+            self.on_lvl_10()
+
 
 
     def blit(self):
